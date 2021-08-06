@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figuras Geométricas | Taller #1</title>
+</head>
+<body>
+    <header>
+        <h1>Matlim</h1>
+        <p>Geometric problems solver</p>
+    </header>
+    <section>
+        <h2>Choose the figure you are calculating</h2>
+        <div class="figure1">
+            <!-- <figure>
+                <img src="" alt="">
+            </figure> -->
+            <h3>Square</h3>
+        </div>
+        <div class="figure2">
+            <!-- <figure>
+                <img src="" alt="">
+            </figure> -->
+            <h3>Rectangle</h3>
+        </div>
+        <div class="figure3">
+            <!-- <figure>
+                <img src="" alt="">
+            </figure> -->
+            <h3>Triangle</h3>
+        </div>
+        <div class="figure4">
+            <!-- <figure>
+                <img src="" alt="">
+            </figure> -->
+            <h3>Circle</h3>
+        </div>
+    </section>
+    <section>
+        <h2>Put your values here</h2>
+        <form>
+            <span>Unit:</span>
+            <select name="metric-units" id="unit-selected">
+                <option value="nm">nm</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="miles">miles</option>
+            </select>
+            <label for="decimals">Max decimals at result:</label>
+            <input type="number" name="decimals" id="square-decimals" max="10" required>
+            <label for="square-width">Width:</label>
+            <input type="number" name="square-width" id="square-width" min="0" step="0.0001" max="1000000" required> <!-- step es para especificar los decimales -->
+            <button type="button" onclick="calculateSquare()" class="button-submit">Calculate</button> <!-- si se agrega el type="button" no muestra los campos que son requeridos, a menos que se le pase en JS al elemento (todos los que son requeridos) un ,..element.reportValidity() o .checkValidity() (es mejor el reportValidity ya que muestra lo que hace falta) -->
+        </form>
+    </section>
+
+    <section>
+        <h2>Put your values here</h2>
+        <form>
+            <span>Unit</span>
+            <select name="units" id="unit-selected" required>
+                <option value="nm">nm</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="miles">miles</option>
+            </select>
+            <label for="decimals">Max decimals at result:</label>
+            <input type="number" name="decimals" id="rectangle-decimals" max="10" required>
+            <label for="rectangle-length">Length:</label>
+            <input type="number" name="rectangle-length" id="rectangle-length" min="0" step="0.0001" max="1000000" required>
+            <label for="rectangle-width">Width:</label>
+            <input type="number" name="rectangle-width" id="rectangle-width" min="0" step="0.0001" max="1000000" required>
+            <button type="button" onclick="calculateRectangle()" class="button-submit">Calculate</button>
+        </form>
+    </section>
+    <section>
+        <h2>Results</h2>
+        <h3>The diameter is:</h3>
+        <span id="diameter-text"></span>
+        <h3>The perimeter is:</h3>
+        <span id="perimeter-text"></span>
+        <h3>The area is:</h3>
+        <span id="area-text"></span>
+        <h3>The volume is:</h3>
+        <span id="volumen-text"></span>
+    </section>
+    
+    <script src="./matlim.js"></script>
+</body>
+</html>
