@@ -1,23 +1,18 @@
 document.getElementById("square-option").addEventListener("click", showSquare);
 document.getElementById("rectangle-option").addEventListener("click", showRectangle);
 document.getElementById("triangle-option").addEventListener("click", showTriangle);
-let squareChoosed = document.getElementById("square");
-let rectangleChoosed = document.getElementById("rectangle");
-let triangleChoosed = document.getElementById("triangle");
-let toFindHyp = document.getElementById("hyp");
-let toFindOpp = document.getElementById("opp");
-let toFindAdj = document.getElementById("adj");
+const squareChoosed = document.getElementById("square");
+const rectangleChoosed = document.getElementById("rectangle");
+const triangleChoosed = document.getElementById("triangle");
+const divAngleDegrees = document.getElementById("hyp-opp-adj");
+let angleDegreesInput = document.getElementById("hyp-opp-adj-angle-degrees");
+let sideToDiscover;
 let showKnownSide = document.getElementById("continue-known-side");
 let knownSide = document.getElementById("known-side");
-let knownSideHyp = document.getElementById("known-side-hyp");
-let knownSideOpp = document.getElementById("known-side-opp");
-let knownSideAdj = document.getElementById("known-side-adj");
-let hypAngleDegrees = document.getElementById("hyp-angle-degrees");
-let oppAngleDegrees = document.getElementById("opp-angle-degrees");
-let adjAngleDegrees = document.getElementById("adj-angle-degrees");
-let hypSideInput = document.getElementById("hyp-side-value");
-let oppSideInput = document.getElementById("opp-side-value");
-let adjSideInput = document.getElementById("adj-side-value");
+let showKnownSideValueDiv = document.getElementById("known-side-value-div")
+let labelKnownSide = document.getElementById("known-side-value-div__label");
+let valueKnownSide = document.getElementById("hyp-opp-adj-side-value");
+let solverButton = document.getElementById("solver-button");
 
 const pi = Math.PI;
 /* const preventReload = document.getElementsByClassName("button-submit");
@@ -158,122 +153,82 @@ function calculateRectangle(){
 
 }
 
-
-
 function selectHypothenuse(){
     // show
-    toFindHyp.classList.remove("not-shown");
-    toFindHyp.classList.add("shown-figure-block");
-    // hide
-    toFindOpp.classList.remove("shown-figure-block");
-    toFindOpp.classList.add("not-shown");
-    toFindAdj.classList.remove("show-figure-block");
-    toFindAdj.classList.add("not-shown");
+    divAngleDegrees.classList.remove("not-shown");
+    divAngleDegrees.classList.add("shown-figure-block");
+    angleDegreesInput.value = "";
+    sideToDiscover = "hypothenuse";
     showKnownSide.classList.remove("not-shown");
-    showKnownSide.classList.add("show-figure-inline-block");
-    // requirements of inputs
-    hypAngleDegrees.setAttribute("required", "");
-    oppAngleDegrees.removeAttribute("required");
-    adjAngleDegrees.removeAttribute("required");
-    // delete values of other inputs
-    oppAngleDegrees.value = "";
-    adjAngleDegrees.value = "";
+    showKnownSide.classList.remove("show-figure-inline-block");
 }
 
 function selectOpposite(){
     // show
-    toFindOpp.classList.remove("not-shown");
-    toFindOpp.classList.add("shown-figure-block");
-    // hide
-    toFindAdj.classList.remove("show-figure-block");
-    toFindAdj.classList.add("not-shown");
-    toFindHyp.classList.remove("shown-figure-block");
-    toFindHyp.classList.add("not-shown");
+    divAngleDegrees.classList.remove("not-shown");
+    divAngleDegrees.classList.add("shown-figure-block");
+    angleDegreesInput.value = "";
+    sideToDiscover = "opposite side";
     showKnownSide.classList.remove("not-shown");
-    showKnownSide.classList.add("show-figure-inline-block");
-    // requirements of inputs
-    oppAngleDegrees.setAttribute("required", "");
-    hypAngleDegrees.removeAttribute("required");
-    adjAngleDegrees.removeAttribute("required");
-    // delete values of other inputs
-    hypAngleDegrees.value = "";
-    adjAngleDegrees.value = "";
+    showKnownSide.classList.remove("show-figure-inline-block");
 }
 
 function selectAdjacent(){
     // show
-    toFindAdj.classList.remove("not-shown");
-    toFindAdj.classList.add("show-figure-block");
-    // hide
-    toFindOpp.classList.remove("shown-figure-block");
-    toFindOpp.classList.add("not-shown");
-    toFindHyp.classList.remove("shown-figure-block");
-    toFindHyp.classList.add("not-shown");
+    divAngleDegrees.classList.remove("not-shown");
+    divAngleDegrees.classList.add("shown-figure-block");
+    angleDegreesInput.value = "";
+    sideToDiscover = "adjacent side";
     showKnownSide.classList.remove("not-shown");
-    showKnownSide.classList.add("show-figure-inline-block");
-    // requirements of inputs
-    adjAngleDegrees.setAttribute("required", "");
-    hypAngleDegrees.removeAttribute("required");
-    oppAngleDegrees.removeAttribute("required");
-    // delete values of other inputs
-    hypAngleDegrees.value = "";
-    oppAngleDegrees.value = "";
+    showKnownSide.classList.remove("show-figure-inline-block");
 }
 
 function selectKnownSide(){
-    const validation1 = hypAngleDegrees.reportValidity();
-    const validation2 = oppAngleDegrees.reportValidity();
-    const validation3 = adjAngleDegrees.reportValidity();
-    // validate that the values on the inputs are in order
-    // if(validation1 === false && validation2 === false && validation3== false){console.log("1: "+validation1+". 2: "+validation2+". 3: "+validation3)}
-    if(validation1 === true && validation2 === true && validation3 === true){
-        // hide
-        showKnownSide.classList.remove("show-figure-inline-block");
-        showKnownSide.classList.add("not-shown");
-        // show
+    let validation1 = angleDegreesInput.reportValidity();
+    if(validation1 === true){
         knownSide.classList.remove("not-shown");
         knownSide.classList.add("show-figure-block");
+        solverButton.textContent = "Calculate " + sideToDiscover;
     }
 }
 
 function selectSecondHyp(){
-    // hide
-    knownSideOpp.classList.remove("show-figure-block");
-    knownSideOpp.classList.add("not-shown");
-    knownSideAdj.classList.remove("show-figure-block");
-    knownSideAdj.classList.add("not-shown");
-    // show
-    knownSideHyp.classList.remove("not-shown");
-    knownSideHyp.classList.add("show-figure-block");
-
+    valueKnownSide.value = "";
+    showKnownSideValueDiv.classList.remove("not-shown");
+    showKnownSideValueDiv.classList.add("show-figure-block");
+    labelKnownSide.textContent = "Hypothenuse value:";
+    solverButton.classList.remove("not-shown");
+    solverButton.classList.add("show-figure-inline-block");
 }
 
 function selectSecondOpp(){
-    // hide
-    knownSideHyp.classList.remove("show-figure-block");
-    knownSideHyp.classList.add("not-shown");
-    knownSideAdj.classList.remove("show-figure-block");
-    knownSideAdj.classList.add("not-shown");
-    // show
-    knownSideOpp.classList.remove("not-shown");
-    knownSideOpp.classList.add("show-figure-block");
+    valueKnownSide.value = "";
+    showKnownSideValueDiv.classList.remove("not-shown");
+    showKnownSideValueDiv.classList.add("show-figure-block");
+    labelKnownSide.textContent = "Opposite side value:";
+    
 }
 
 function selectSecondAdj(){
-    // hide
-    knownSideHyp.classList.remove("show-figure-block");
-    knownSideHyp.classList.add("not-shown");
-    knownSideAdj.classList.remove("show-figure-block");
-    knownSideAdj.classList.add("not-shown");
-    // show
-    knownSideOpp.classList.remove("not-shown");
-    knownSideOpp.classList.add("show-figure-block");
+    valueKnownSide.value = "";
+    showKnownSideValueDiv.classList.remove("not-shown");
+    showKnownSideValueDiv.classList.add("show-figure-block");
+    labelKnownSide.textContent = "Adjacent side value:";
 }
 
-function solveHypOppAdj(){
-    let hypVisible = hypSideInput.offsetParent;
-    let oppVisible = hypSideInput.offsetParent;
-    let adjVisible = hypSideInput.offsetParent;
-
-    if()
+function calcHypOppAdj(){
+    let validation1 = document.getElementById("hyp-opp-adj-side-value").reportValidity();
+    if(validation1 === true){
+        switch(sideToDiscover){
+            case "hypothenuse":
+                console.log("you are calc the hyp");
+                break;
+            case "opposite side":
+                console.log("you are calc the opp");
+                break;
+            case "adjacent side":
+                console.log("you are calc the adj");
+                break;
+        }
+    }
 }
