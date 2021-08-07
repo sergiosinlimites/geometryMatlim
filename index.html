@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figuras Geométricas | Taller #1</title>
+    <link rel="stylesheet" href="./matlim.css">
 </head>
 <body>
     <header>
@@ -13,36 +14,36 @@
     </header>
     <section>
         <h2>Choose the figure you are calculating</h2>
-        <div class="figure1">
+        <div id="square-option">
             <!-- <figure>
                 <img src="" alt="">
             </figure> -->
             <h3>Square</h3>
         </div>
-        <div class="figure2">
+        <div id="rectangle-option">
             <!-- <figure>
                 <img src="" alt="">
             </figure> -->
             <h3>Rectangle</h3>
         </div>
-        <div class="figure3">
+        <div id="triangle-option">
             <!-- <figure>
                 <img src="" alt="">
             </figure> -->
             <h3>Triangle</h3>
         </div>
-        <div class="figure4">
+        <div id="circle-option">
             <!-- <figure>
                 <img src="" alt="">
             </figure> -->
             <h3>Circle</h3>
         </div>
     </section>
-    <section>
+    <section class="square not-shown" id="square">
         <h2>Put your values here</h2>
         <form>
             <span>Unit:</span>
-            <select name="metric-units" id="unit-selected">
+            <select name="square-unit-selected" id="square-unit-selected">
                 <option value="nm">nm</option>
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
@@ -50,19 +51,19 @@
                 <option value="km">km</option>
                 <option value="miles">miles</option>
             </select>
-            <label for="decimals">Max decimals at result:</label>
-            <input type="number" name="decimals" id="square-decimals" max="10" required>
+            <label for="square-decimals">Max decimals at result:</label>
+            <input type="number" name="square-decimals" id="square-decimals" placeholder="default: 0, max: 10" max="10" required>
             <label for="square-width">Width:</label>
             <input type="number" name="square-width" id="square-width" min="0" step="0.0001" max="1000000" required> <!-- step es para especificar los decimales -->
             <button type="button" onclick="calculateSquare()" class="button-submit">Calculate</button> <!-- si se agrega el type="button" no muestra los campos que son requeridos, a menos que se le pase en JS al elemento (todos los que son requeridos) un ,..element.reportValidity() o .checkValidity() (es mejor el reportValidity ya que muestra lo que hace falta) -->
         </form>
     </section>
 
-    <section>
+    <section class="rectangle not-shown" id="rectangle">
         <h2>Put your values here</h2>
         <form>
             <span>Unit</span>
-            <select name="units" id="unit-selected" required>
+            <select name="rectangle-unit-selected" id="rectangle-unit-selected" required>
                 <option value="nm">nm</option>
                 <option value="mm">mm</option>
                 <option value="cm">cm</option>
@@ -70,8 +71,8 @@
                 <option value="km">km</option>
                 <option value="miles">miles</option>
             </select>
-            <label for="decimals">Max decimals at result:</label>
-            <input type="number" name="decimals" id="rectangle-decimals" max="10" required>
+            <label for="rectangle-decimals">Max decimals at result:</label>
+            <input type="number" name="rectangle-decimals" id="rectangle-decimals" placeholder="default: 0, max: 10 " max="10" required>
             <label for="rectangle-length">Length:</label>
             <input type="number" name="rectangle-length" id="rectangle-length" min="0" step="0.0001" max="1000000" required>
             <label for="rectangle-width">Width:</label>
@@ -79,6 +80,56 @@
             <button type="button" onclick="calculateRectangle()" class="button-submit">Calculate</button>
         </form>
     </section>
+
+    <section class="triangle not-shown" id="triangle">
+        <h2>Select what you want to know</h2>
+        <button type="button" onclick="selectHypothenuse()" class="triangle__hypothenuse">Hipothenuse</button>
+        <button type="button" onclick="selectOpposite()" class="triangle__opposite">Opposite side</button>
+        <button type="button" onclick="selectAdjacent()" class="triangle__adjacent">Adjacent side</button>
+        <div class="hyp not-shown" id="hyp">
+            <label for="hyp-angle-degrees">Angle degrees:</label>
+            <input type="number" name="hyp-angle-degrees" id="hyp-angle-degrees" placeholder="Ex: 37,2" step="0.0001" min="0.0001" max="359.9999"/>
+        </div>
+        <div class="opp not-shown" id="opp">
+            <label for="opp-angle-degrees">Angle degrees:</label>
+            <input type="number" name="opp-angle-degrees" id="opp-angle-degrees" placeholder="Ex: 35,2" step="0.0001" min="0.0001" max="359.9999"/>
+        </div>
+        <div class="adj not-shown" id="adj">
+            <label for="adj-angle-degrees">Angle degrees:</label>
+            <input type="number" name="adj-angle-degrees" id="adj-angle-degrees" placeholder="Ex: 33,2" step="0.0001" min="0.0001" max="359.9999"/>
+        </div>
+        <button type="button" onclick="selectKnownSide()" id="continue-known-side" class="not-shown">Continue</button>
+        <div class="known-side not-shown" id="known-side">
+            <h3>Side that you know:</h3>
+            <span>(depending on the angle you have)</span>
+            <button type="button" onclick="selectSecondHyp()">Hypothenuse</button>
+            <button type="button" onclick="selectSecondOpp()">Opposite side</button>
+            <button type="button" onclick="selectSecondAdj()">Adjacent side</button>
+            <div class="known-side-hyp not-shown" id="known-side-hyp">
+                <label for="hyp-side-value">Hypothenuse value:</label>
+                <input type="number" name="hyp-side-value" id="hyp-side-value" placeholder="Ex: 33,2" step="0.0001" min="0.0001" max="1000000"/>
+            </div>
+            <div class="known-side-opp not-shown" id="known-side-opp">
+                <label for="opp-side-value">Opposite value:</label>
+                <input type="number" name="opp-side-value" id="opp-side-value" placeholder="Ex: 33,2" step="0.0001" min="0.0001" max="1000000"/>
+            </div>
+            <div class="kwown-side-adj not-shown" id="known-side-adj">
+                <label for="adj-side-value">Adjacent value:</label>
+                <input type="number" name="adj-side-value" id="adj-side-value" placeholder="Ex: 33,2" step="0.0001" min="0.0001" max="1000000"/>
+            </div>
+            <span>Unit:</span>
+            <select name="hypOppAdj-unit-selected" id="hypOppAdj-unit-selected">
+                <option value="nm">nm</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="miles">miles</option>
+            </select>
+            <button type="button" onclick="solveHypOppAdj()"></button>
+        </div>
+    </section>
+
     <section>
         <h2>Results</h2>
         <h3>The diameter is:</h3>

@@ -1,0 +1,28 @@
+/* .square {
+    display: none;
+}
+
+.rectangle {
+    display: none;
+}
+
+.triangle {
+    display: none;
+}
+ */
+
+.not-shown {
+    display: none;
+}
+
+.show-figure-block {
+    display: block;
+}
+
+.show-figure-flex {
+    display: flex;
+}
+
+.show-figure-inline-block {
+    display: inline-block;
+}
