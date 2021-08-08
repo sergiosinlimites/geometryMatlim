@@ -26,3 +26,7 @@
 .show-figure-inline-block {
     display: inline-block;
 }
+
+.show-figure-inline {
+    display: inline;
+}
