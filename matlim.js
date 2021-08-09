@@ -7,6 +7,7 @@ document.getElementById("circle-option").addEventListener("click", showCircle);
 const squareChoosed = document.getElementById("square");
 const rectangleChoosed = document.getElementById("rectangle");
 const isoscelesTriangleChoosed = document.getElementById("isosceles-triangle");
+const equilateralTriangleChoosed = document.getElementById("equilateral-triangle");
 const rightTriangleChoosed = document.getElementById("right-triangle");
 const circleChoosed = document.getElementById("circle");
 const divAngleDegrees = document.getElementById("hyp-opp-adj");
@@ -66,7 +67,8 @@ function showSquare(){
     rectangleChoosed.classList.add("not-shown");
     isoscelesTriangleChoosed.classList.remove("show-figure-block");
     isoscelesTriangleChoosed.classList.add("not-shown");
-    // left the equilateral triangle
+    equilateralTriangleChoosed.classList.remove("show-figure-block");
+    equilateralTriangleChoosed.classList.add("not-shown");
     rightTriangleChoosed.classList.remove("show-figure-block");
     rightTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
@@ -95,6 +97,8 @@ function showRectangle(){
     squareChoosed.classList.add("not-shown");
     isoscelesTriangleChoosed.classList.remove("show-figure-block");
     isoscelesTriangleChoosed.classList.add("not-shown");
+    equilateralTriangleChoosed.classList.remove("show-figure-block");
+    equilateralTriangleChoosed.classList.add("not-shown");
     rightTriangleChoosed.classList.remove("show-figure-block");
     rightTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
@@ -127,6 +131,8 @@ function showIsosceles(){
     squareChoosed.classList.add("not-shown");
     rectangleChoosed.classList.remove("show-figure-block");
     rectangleChoosed.classList.add("not-shown");
+    equilateralTriangleChoosed.classList.remove("show-figure-block");
+    equilateralTriangleChoosed.classList.add("not-shown");
     rightTriangleChoosed.classList.remove("show-figure-block");
     rightTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
@@ -148,7 +154,37 @@ function showIsosceles(){
 }
 
 function showEquilateral(){
-
+    equilateralTriangleChoosed.classList.remove("not-shown");
+    equilateralTriangleChoosed.classList.add("show-figure-block");
+    areaDiv.classList.remove("not-shown");
+    areaDiv.classList.add("show-figure-inline");
+    perimeterDiv.classList.remove("not-shown");
+    perimeterDiv.classList.add("show-figure-inline");
+    // hide
+    squareChoosed.classList.remove("show-figure-block");
+    squareChoosed.classList.add("not-shown");
+    rectangleChoosed.classList.remove("show-figure-block");
+    rectangleChoosed.classList.add("not-shown");
+    isoscelesTriangleChoosed.classList.remove("show-figure-block");
+    isoscelesTriangleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
+    circleChoosed.classList.remove("show-figure-block");
+    circleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
+    circleChoosed.classList.remove("show-figure-block");
+    circleChoosed.classList.add("not-shown");
+    diameterDiv.classList.remove("show-figure-inline");
+    diameterDiv.classList.add("not-shown");
+    volumeDiv.classList.remove("show-figure-inline");
+    volumeDiv.classList.add("not-shown");
+    hypDiv.classList.remove("show-figure-inline");
+    hypDiv.classList.add("not-shown");
+    oppDiv.classList.remove("show-figure-inline");
+    oppDiv.classList.add("not-shown");
+    adjDiv.classList.remove("show-figure-inline");
+    adjDiv.classList.add("not-shown");
 }
 
 function showRightTriangle(){
@@ -168,6 +204,8 @@ function showRightTriangle(){
     rectangleChoosed.classList.add("not-shown");
     isoscelesTriangleChoosed.classList.remove("show-figure-block");
     isoscelesTriangleChoosed.classList.add("not-shown");
+    equilateralTriangleChoosed.classList.remove("show-figure-block");
+    equilateralTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
     circleChoosed.classList.add("not-shown");
     areaDiv.classList.remove("show-figure-inline");
@@ -197,6 +235,8 @@ function showCircle(){
     rectangleChoosed.classList.add("not-shown");
     isoscelesTriangleChoosed.classList.remove("show-figure-block");
     isoscelesTriangleChoosed.classList.add("not-shown");
+    equilateralTriangleChoosed.classList.remove("show-figure-block");
+    equilateralTriangleChoosed.classList.add("not-shown");
     rightTriangleChoosed.classList.remove("show-figure-block");
     rightTriangleChoosed.classList.add("not-shown");
     perimeterDiv.classList.remove("show-figure-inline");
@@ -229,16 +269,34 @@ function rectangleArea(length, width){
 
 function isoscelesArea(sidea, sideb, sidebase){
     if(sidea === sideb && sidea != sidebase){
-        const halfbase = sidebase/2;
-        return Math.sqrt((sidea)**2 - (halfbase)**2);
+        console.log("Side a:" + sidea + ", side b: " + sideb + ", base: " + sidebase);
+        if(sidebase < (sidea*2)){
+            const halfbase = sidebase/2;
+            return Math.sqrt((sidea)**2 - (halfbase)**2);
+        } else {
+            alert("The sides do not match to a real triangle");
+        }
     } else { alert("your sides are not the ones of an Isosceles triangle")}
 }
 
 function isoscelesPerimeter(sidea, sideb, sidebase){
     if(sidea === sideb && sidea != sidebase){
-        let result = parseFloat(sidea) + parseFloat(sideb) + parseFloat(sidebase);
-        return result;
+        console.log("Side a:" + sidea + ", side b: " + sideb + ", base: " + sidebase);
+        if(sidebase < (sidea*2)){
+            let result = parseFloat(sidea) + parseFloat(sideb) + parseFloat(sidebase);
+            return result;
+        } else {
+        }
     } else { alert("your sides are not the ones of an Isosceles triangle")}
+}
+
+function equilateralArea(side){
+    const halfbase = side/2;
+    return Math.sqrt((side)**2 - (halfbase)**2);
+}
+
+function equilateralPerimeter(side){
+    return side * 3;
 }
 
 function trianglePerimeter(lado1, lado2, base){
@@ -322,7 +380,24 @@ function calculateIsosceles(){
         const writeArea = document.getElementById("area-text");
         let unitSelected = document.getElementById("isosceles-unit-selected").value;
         writePerimeter.textContent = perimeter + " " + unitSelected;
-        writeArea.textContent = area + " " + unitSelected;
+        writeArea.textContent = area + " " + unitSelected + "^2";
+    }
+}
+
+function calculateEquilateral(){
+    let validation1 = document.getElementById("equilateral-side").reportValidity();
+    let validation2 = document.getElementById("equilateral-decimals").reportValidity();
+    if(validation1 === true && validation2 === true){
+        let inputSide = document.getElementById("equilateral-side").value;
+        let decimalsNumber = document.getElementById("equilateral-decimals").value;
+        // write
+        let perimeter = parseFloat(equilateralPerimeter(inputSide).toFixed(decimalsNumber));
+        let area = parseFloat(equilateralArea(inputSide).toFixed(decimalsNumber));
+        const writePerimeter = document.getElementById("perimeter-text");
+        const writeArea = document.getElementById("area-text");
+        let unitSelected = document.getElementById("isosceles-unit-selected").value;
+        writePerimeter.textContent = perimeter + " " + unitSelected;
+        writeArea.textContent = area + " " + unitSelected + "^2";
     }
 }
 
@@ -452,48 +527,55 @@ function selectSecondAdj(){
 
 function calcHypOppAdj(){
     let validation1 = document.getElementById("hyp-opp-adj-side-value").reportValidity();
-    if(validation1 === true){
+    let validation2 = document.getElementById("right-triangle-decimals").reportValidity();
+    if(validation1 === true && validation2 === true){
+        let decimalsNumber = document.getElementById("right-triangle-decimals").value;
         switch(sideToDiscover){
             case "hypothenuse":
+                const writeHyp = document.getElementById("hyp-text");
                 switch(sideUserKnows){
                     case "opposite side":
                         //console.log("The known side value is: " + valueKnownSide.value);
                         //console.log("The angle degrees value is: " + angleDegreesInput.value);
                         toRAD = angleDegreesInput.value / (180 / Math.PI);
-                        console.log("final: " + (valueKnownSide.value / Math.sin(toRAD)));
+                        writeHyp.textContent = parseFloat((valueKnownSide.value / Math.sin(toRAD)).toFixed(decimalsNumber));;
                         break;
                     case "adjacent side":
                         toRAD = angleDegreesInput.value / (180 / Math.PI);
-                        console.log("final: " + (valueKnownSide.value / Math.cos(toRAD)));
+                        writeHyp.textContent = parseFloat((valueKnownSide.value / Math.cos(toRAD)).toFixed(decimalsNumber));;
                         break;
                     default:
                         console.log("You did something wrong");
                 }
                 break;
             case "opposite side":
+                const writeOpp = document.getElementById("opp-text");
                 switch(sideUserKnows){
                     case "hypothenuse":
                         toRAD = angleDegreesInput.value / (180 / Math.PI);
-                        console.log("final: " + (valueKnownSide.value * Math.sin(toRAD)));
+                        writeOpp.textContent = parseFloat((valueKnownSide.value * Math.sin(toRAD)).toFixed(decimalsNumber));
                         break;
                     case "adjacent side":
                         toRAD = angleDegreesInput.value / (180 / Math.PI);
-                        console.log("final: " + (valueKnownSide.value * Math.tan(toRAD)));
+                        writeOpp.textContent = parseFloat((valueKnownSide.value * Math.tan(toRAD)).toFixed(decimalsNumber));;
                         break;
                     default:
                         console.log("You did something wrong");
                 }
                 break;
             case "adjacent side":
+                const writeAdj = document.getElementById("adj-text");
                 switch(sideUserKnows){
                     case "hypothenuse":
                         toRAD = angleDegreesInput.value / (180 / Math.PI);
-                        console.log("final: " + (valueKnownSide.value * Math.cos(toRAD)));
+                        writeAdj.textContent = parseFloat((valueKnownSide.value * Math.cos(toRAD)).toFixed(decimalsNumber));
                         break;
                     case "opposite side":
                         toRAD = angleDegreesInput.value / (180 / Math.PI);
-                        console.log("final: " + (valueKnownSide.value / Math.tan(toRAD)));
+                        writeAdj.textContent = parseFloat((valueKnownSide.value / Math.tan(toRAD)).toFixed(decimalsNumber));
                         break;
+                    default:
+                        console.log("You did something wrong");
                 }
                 break;
         }

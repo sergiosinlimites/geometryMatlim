@@ -121,6 +121,28 @@
         </form>
     </section>
 
+    <section class="not-shown" id="equilateral-triangle">
+        <h2>Put your values here</h2>
+        <form>
+            <span>Unit</span>
+            <select name="equilateral-unit-selected" id="equilateral-unit-selected" required>
+                <option value="unit">unit</option>
+                <option value="nm">nm</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="miles">miles</option>
+            </select>
+            <label for="equilateral-decimals">Max decimals at result:</label>
+            <input type="number" name="equilateral-decimals" id="equilateral-decimals" placeholder="default: 0, max: 10 " max="10" required>
+            <label for="equilateral-side">Side:</label>
+            <input type="number" name="equilateral-side" id="equilateral-side" placeholder="side A = side B = Base" min="0" step="0.0001" max="1000000" required>
+
+            <button type="button" onclick="calculateEquilateral()" class="button-submit">Calculate</button>
+        </form>
+    </section>
+
     <section class="triangle not-shown" id="right-triangle">
         <h2>Select what you want to know</h2>
         <button type="button" onclick="selectHypothenuse()" class="triangle__hypothenuse">Hipothenuse</button>
@@ -154,6 +176,8 @@
                 <option value="km">km</option>
                 <option value="miles">miles</option>
             </select>
+            <label for="right-triangle-decimals">Max decimals at result:</label>
+            <input type="number" name="right-triangle-decimals" id="right-triangle-decimals" placeholder="default: 0, max: 10 " max="10" required>
             <button type="button" onclick="calcHypOppAdj()" class="not-shown" id="solver-button"></button>
         </div>
     </section>
