@@ -1,10 +1,13 @@
 document.getElementById("square-option").addEventListener("click", showSquare);
 document.getElementById("rectangle-option").addEventListener("click", showRectangle);
-document.getElementById("triangle-option").addEventListener("click", showTriangle);
+document.getElementById("isosceles-triangle-option").addEventListener("click", showIsosceles);
+document.getElementById("equilateral-triangle-option").addEventListener("click", showEquilateral);
+document.getElementById("right-triangle-option").addEventListener("click", showRightTriangle);
 document.getElementById("circle-option").addEventListener("click", showCircle);
 const squareChoosed = document.getElementById("square");
 const rectangleChoosed = document.getElementById("rectangle");
-const triangleChoosed = document.getElementById("triangle");
+const isoscelesTriangleChoosed = document.getElementById("isosceles-triangle");
+const rightTriangleChoosed = document.getElementById("right-triangle");
 const circleChoosed = document.getElementById("circle");
 const divAngleDegrees = document.getElementById("hyp-opp-adj");
 let angleDegreesInput = document.getElementById("hyp-opp-adj-angle-degrees");
@@ -61,8 +64,11 @@ function showSquare(){
     // hide
     rectangleChoosed.classList.remove("show-figure-block");
     rectangleChoosed.classList.add("not-shown");
-    triangleChoosed.classList.remove("show-figure-block");
-    triangleChoosed.classList.add("not-shown");
+    isoscelesTriangleChoosed.classList.remove("show-figure-block");
+    isoscelesTriangleChoosed.classList.add("not-shown");
+    // left the equilateral triangle
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
     circleChoosed.classList.add("not-shown");
     diameterDiv.classList.remove("show-figure-inline");
@@ -87,12 +93,14 @@ function showRectangle(){
     // hide
     squareChoosed.classList.remove("show-figure-block");
     squareChoosed.classList.add("not-shown");
-    triangleChoosed.classList.remove("show-figure-block");
-    triangleChoosed.classList.add("not-shown");
+    isoscelesTriangleChoosed.classList.remove("show-figure-block");
+    isoscelesTriangleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
     circleChoosed.classList.add("not-shown");
-    triangleChoosed.classList.remove("show-figure-block");
-    triangleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
     circleChoosed.classList.add("not-shown");
     diameterDiv.classList.remove("show-figure-inline");
@@ -107,10 +115,46 @@ function showRectangle(){
     adjDiv.classList.add("not-shown");
 }
 
-function showTriangle(){
+function showIsosceles(){
+    isoscelesTriangleChoosed.classList.remove("not-shown");
+    isoscelesTriangleChoosed.classList.add("show-figure-block");
+    areaDiv.classList.remove("not-shown");
+    areaDiv.classList.add("show-figure-inline");
+    perimeterDiv.classList.remove("not-shown");
+    perimeterDiv.classList.add("show-figure-inline");
+    // hide
+    squareChoosed.classList.remove("show-figure-block");
+    squareChoosed.classList.add("not-shown");
+    rectangleChoosed.classList.remove("show-figure-block");
+    rectangleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
+    circleChoosed.classList.remove("show-figure-block");
+    circleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
+    circleChoosed.classList.remove("show-figure-block");
+    circleChoosed.classList.add("not-shown");
+    diameterDiv.classList.remove("show-figure-inline");
+    diameterDiv.classList.add("not-shown");
+    volumeDiv.classList.remove("show-figure-inline");
+    volumeDiv.classList.add("not-shown");
+    hypDiv.classList.remove("show-figure-inline");
+    hypDiv.classList.add("not-shown");
+    oppDiv.classList.remove("show-figure-inline");
+    oppDiv.classList.add("not-shown");
+    adjDiv.classList.remove("show-figure-inline");
+    adjDiv.classList.add("not-shown");
+}
+
+function showEquilateral(){
+
+}
+
+function showRightTriangle(){
     // show
-    triangleChoosed.classList.remove("not-shown");
-    triangleChoosed.classList.add("show-figure-block");
+    rightTriangleChoosed.classList.remove("not-shown");
+    rightTriangleChoosed.classList.add("show-figure-block");
     hypDiv.classList.add("show-figure-inline");
     hypDiv.classList.remove("not-shown");
     oppDiv.classList.add("show-figure-inline");
@@ -122,6 +166,8 @@ function showTriangle(){
     squareChoosed.classList.add("not-shown");
     rectangleChoosed.classList.remove("show-figure-block");
     rectangleChoosed.classList.add("not-shown");
+    isoscelesTriangleChoosed.classList.remove("show-figure-block");
+    isoscelesTriangleChoosed.classList.add("not-shown");
     circleChoosed.classList.remove("show-figure-block");
     circleChoosed.classList.add("not-shown");
     areaDiv.classList.remove("show-figure-inline");
@@ -149,8 +195,10 @@ function showCircle(){
     squareChoosed.classList.add("not-shown");
     rectangleChoosed.classList.remove("show-figure-block");
     rectangleChoosed.classList.add("not-shown");
-    triangleChoosed.classList.remove("show-figure-block");
-    triangleChoosed.classList.add("not-shown");
+    isoscelesTriangleChoosed.classList.remove("show-figure-block");
+    isoscelesTriangleChoosed.classList.add("not-shown");
+    rightTriangleChoosed.classList.remove("show-figure-block");
+    rightTriangleChoosed.classList.add("not-shown");
     perimeterDiv.classList.remove("show-figure-inline");
     perimeterDiv.classList.add("not-shown");
     volumeDiv.classList.remove("show-figure-inline");
@@ -179,6 +227,20 @@ function rectangleArea(length, width){
     return length * width;
 }
 
+function isoscelesArea(sidea, sideb, sidebase){
+    if(sidea === sideb && sidea != sidebase){
+        const halfbase = sidebase/2;
+        return Math.sqrt((sidea)**2 - (halfbase)**2);
+    } else { alert("your sides are not the ones of an Isosceles triangle")}
+}
+
+function isoscelesPerimeter(sidea, sideb, sidebase){
+    if(sidea === sideb && sidea != sidebase){
+        let result = parseFloat(sidea) + parseFloat(sideb) + parseFloat(sidebase);
+        return result;
+    } else { alert("your sides are not the ones of an Isosceles triangle")}
+}
+
 function trianglePerimeter(lado1, lado2, base){
     return lado1 + lado2 + base
 }
@@ -204,8 +266,8 @@ function circleArea(radio){
 
 function calculateSquare(){
     // requirements
-    const validation1 = document.getElementById("square-decimals").reportValidity();
-    const validation2 = document.getElementById("square-width").reportValidity();
+    let validation1 = document.getElementById("square-decimals").reportValidity();
+    let validation2 = document.getElementById("square-width").reportValidity();
     // esto permite revisar si el elemento tiene todo lo necesario para ser pasado
 
     if(validation1 === true && validation2 === true){
@@ -223,20 +285,42 @@ function calculateSquare(){
 }
 
 function calculateRectangle(){
-    // const validation1 = document.getElementById("rectangle-decimals");
-    const validation2 = document.getElementById("rectangle-length").reportValidity()
-    const validation3 = document.getElementById("rectangle-width").reportValidity()
+    let validation1 = document.getElementById("rectangle-decimals").reportValidity();
+    let validation2 = document.getElementById("rectangle-length").reportValidity()
+    let validation3 = document.getElementById("rectangle-width").reportValidity()
     // esto permite revisar si el elemento tiene todo lo necesario para ser pasado
-    if(validation1 === true && validation2 === true){
-        const inputLengthValue = document.getElementById("rectangle-length").value;
-        const inputWidthValue = document.getElementById("rectangle-width").value;
+    if(validation1 === true && validation2 === true && validation3 === true){
+        let inputLengthValue = document.getElementById("rectangle-length").value;
+        let inputWidthValue = document.getElementById("rectangle-width").value;
         let decimalsNumber = document.getElementById("rectangle-decimals").value;
         // write
-        const perimeter = parseFloat(rectanglePerimeter(inputLengthValue, inputWidthValue).toFixed(decimalsNumber));
-        const area = parseFloat(rectangleArea(inputLengthValue, inputWidthValue).toFixed(decimalsNumber));
+        let perimeter = parseFloat(rectanglePerimeter(inputLengthValue, inputWidthValue).toFixed(decimalsNumber));
+        let area = parseFloat(rectangleArea(inputLengthValue, inputWidthValue).toFixed(decimalsNumber));
         const writePerimeter = document.getElementById("perimeter-text");
         const writeArea = document.getElementById("area-text");
-        const unitSelected = document.getElementById("rectangle-unit-selected").value;
+        let unitSelected = document.getElementById("rectangle-unit-selected").value;
+        writePerimeter.textContent = perimeter + " " + unitSelected;
+        writeArea.textContent = area + " " + unitSelected;
+    }
+}
+
+function calculateIsosceles(){
+    let validation1 = document.getElementById("isosceles-sidea").reportValidity();
+    let validation2 = document.getElementById("isosceles-sideb").reportValidity();
+    let validation3 = document.getElementById("isosceles-base").reportValidity();
+    let validation4 = document.getElementById("isosceles-decimals").reportValidity();
+
+    if(validation1 === true && validation2 === true && validation3 === true && validation4 === true){
+        let inputSideA = document.getElementById("isosceles-sidea").value;
+        let inputSideB = document.getElementById("isosceles-sideb").value;
+        let inputBase = document.getElementById("isosceles-base").value;
+        let decimalsNumber = document.getElementById("isosceles-decimals").value;
+        // write
+        let perimeter = parseFloat(isoscelesPerimeter(inputSideA, inputSideB, inputBase).toFixed(decimalsNumber));
+        let area = parseFloat(isoscelesArea(inputSideA, inputSideB, inputBase).toFixed(decimalsNumber));
+        const writePerimeter = document.getElementById("perimeter-text");
+        const writeArea = document.getElementById("area-text");
+        let unitSelected = document.getElementById("isosceles-unit-selected").value;
         writePerimeter.textContent = perimeter + " " + unitSelected;
         writeArea.textContent = area + " " + unitSelected;
     }
@@ -244,8 +328,8 @@ function calculateRectangle(){
 
 function calculateCircle(){
     // requirements
-    const validation1 = document.getElementById("circle-decimals").reportValidity(); 
-    const validation2 = document.getElementById("circle-radio").reportValidity();
+    let validation1 = document.getElementById("circle-decimals").reportValidity(); 
+    let validation2 = document.getElementById("circle-radio").reportValidity();
     // esto permite revisar si el elemento tiene todo lo necesario para ser pasado
     if(validation1 === true && validation2 === true){
         const inputRadioValue = document.getElementById("circle-radio").value

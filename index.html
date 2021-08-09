@@ -26,11 +26,23 @@
             </figure> -->
             <h3>Rectangle</h3>
         </div>
-        <div id="triangle-option">
+        <div id="isosceles-triangle-option">
             <!-- <figure>
                 <img src="" alt="">
             </figure> -->
-            <h3>Triangle</h3>
+            <h3>Isosceles triangle</h3>
+        </div>
+        <div id="equilateral-triangle-option">
+            <!-- <figure>
+                <img src="" alt="">
+            </figure> -->
+            <h3>Equilateral triangle</h3>
+        </div>
+        <div id="right-triangle-option">
+            <!-- <figure>
+                <img src="" alt="">
+            </figure> -->
+            <h3>Right triangle</h3>
         </div>
         <div id="circle-option">
             <!-- <figure>
@@ -83,7 +95,33 @@
         </form>
     </section>
 
-    <section class="triangle not-shown" id="triangle">
+    <section class="not-shown" id="isosceles-triangle">
+        <h2>Put your values here</h2>
+        <form>
+            <span>Unit</span>
+            <select name="isosceles-unit-selected" id="isosceles-unit-selected" required>
+                <option value="unit">unit</option>
+                <option value="nm">nm</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="miles">miles</option>
+            </select>
+            <label for="isosceles-decimals">Max decimals at result:</label>
+            <input type="number" name="isosceles-decimals" id="isosceles-decimals" placeholder="default: 0, max: 10 " max="10" required>
+            <label for="isosceles-sidea">Side A:</label>
+            <input type="number" name="isosceles-sidea" id="isosceles-sidea" placeholder="side A = side B" min="0" step="0.0001" max="1000000" required>
+            <label for="isosceles-sideb">Side B:</label>
+            <input type="number" name="isosceles-sideb" id="isosceles-sideb" placeholder="side A = side B" min="0" step="0.0001" max="1000000" required>
+            <label for="isosceles-base">Base:</label>
+            <input type="number" name="isosceles-base" id="isosceles-base" min="0" placeholder="" step="0.0001" max="1000000" required>
+
+            <button type="button" onclick="calculateIsosceles()" class="button-submit">Calculate</button>
+        </form>
+    </section>
+
+    <section class="triangle not-shown" id="right-triangle">
         <h2>Select what you want to know</h2>
         <button type="button" onclick="selectHypothenuse()" class="triangle__hypothenuse">Hipothenuse</button>
         <button type="button" onclick="selectOpposite()" class="triangle__opposite">Opposite side</button>
