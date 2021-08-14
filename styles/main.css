@@ -1,0 +1,27 @@
+:root {
+    --white-color: #EFEFEF;
+    --dark-blue: #011638;
+    --light-blue: #4056F4;
+    --orange: #DA7422;
+    --gray: #788475;
+    --logo-font: 'Segoe UI';
+}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+img {
+    width:100px;
+    height:100px;
+}
