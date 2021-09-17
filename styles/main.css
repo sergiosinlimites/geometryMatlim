@@ -8,6 +8,7 @@
     --light-gray:#b1b3b9;
     --super-light-gray:#d8d7d7;
     --logo-font: 'Segoe UI';
+    --width-padding:20px;
 }
 
 html {
@@ -22,18 +23,20 @@ html {
 
 body {
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-    width:100vw;
+    width:100%; /* no colocar 100vw en body */
 }
 
 .main {
-    width:100vw;
+    width:100%;
     min-height:100vh;
+    overflow-x: hidden;
 }
 
 .welcome-section {
     background-color: var(--dark-blue);
-    padding:20px 20px 0;
+    padding:20px var(--width-padding) 0;
     overflow: hidden;
+    width:100%;
 }
 
 .squarrell-left {
@@ -138,7 +141,7 @@ body {
 
 .second-section {
     background-color: var(--light-blue);
-    padding:20px;
+    padding:20px var(--width-padding);
     width:100%;
 }
 
@@ -152,7 +155,7 @@ body {
 
 .second-section__paragraph {
     color:var(--black);
-    text-align: justify;
+    text-align: center;
     padding:0 5px;
     font-size:1.3rem;
     line-height: 1.7rem;
@@ -177,7 +180,7 @@ body {
     background-color: var(--super-light-gray);
     display: flex;
     flex-direction: column;
-    padding:20px;
+    padding:20px var(--width-padding);
     width:100%;
 }
 
@@ -229,7 +232,7 @@ body {
 .disclaimer-section {
     background-color: var(--light-blue);
     width:100%;
-    padding:20px;
+    padding:20px var(--width-padding);
 }
 
 .disclaimer-section__title {
@@ -245,7 +248,7 @@ body {
 
 .creator {
     display: flex;
-    padding:20px;
+    padding:20px var(--width-padding);
 }
 
 .creator-left {
@@ -255,6 +258,10 @@ body {
 .creator-left__title {
     font-size:1.6rem;
     margin-bottom: 5px;
+}
+
+.creator-left__presentation {
+    font-size:1.3rem;
 }
 
 .creator-left__presentation {
